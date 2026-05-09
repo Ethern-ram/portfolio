@@ -1,15 +1,18 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import gsap from "gsap";
+import Image from "next/image";
 import {
   ArrowUpRight,
   BatteryCharging,
   Bot,
   BrainCircuit,
+  ExternalLink,
   Gauge,
   GitBranch,
+  GitFork,
   Mail,
   Microchip,
   MousePointer2,
@@ -46,13 +49,47 @@ const projects = [
   },
 ];
 
-const skills = [
-  ["Frontend", 86, "#D4FF3F"],
-  ["Embedded", 68, "#111111"],
-  ["IoT", 74, "#6EA8FE"],
-  ["Robotics", 58, "#FF8A00"],
-  ["AI Experiments", 63, "#111111"],
-  ["Visual Systems", 81, "#D4FF3F"],
+const learningSkills = [
+  {
+    label: "Python",
+    status: "currently learning",
+    description: "Learning AI + automation fundamentals",
+    progress: 35,
+    color: "#D4FF3F",
+    icon: "ðŸ",
+  },
+  {
+    label: "C++",
+    status: "building fundamentals",
+    description: "Understanding logic & systems programming",
+    progress: 28,
+    color: "#FF8A00",
+    icon: "âš™ï¸",
+  },
+  {
+    label: "HTML / CSS",
+    status: "experimenting with",
+    description: "Exploring frontend structures & styling",
+    progress: 45,
+    color: "#6EA8FE",
+    icon: "ðŸŽ¨",
+  },
+  {
+    label: "Frontend Engineering",
+    status: "currently exploring",
+    description: "React, Next.js, and component thinking",
+    progress: 30,
+    color: "#D4FF3F",
+    icon: "ðŸ§©",
+  },
+  {
+    label: "Embedded Systems",
+    status: "engineering curiosity",
+    description: "Microcontrollers, sensors, and hardware interfaces",
+    progress: 22,
+    color: "#FF8A00",
+    icon: "ðŸ”Œ",
+  },
 ];
 
 const terminalLines = [
@@ -62,6 +99,9 @@ const terminalLines = [
   "frontend, embedded systems, iot, robotics, ai, creative technology",
   "$ status",
   "currently debugging life... voltage stable.",
+  "$ contact --list",
+  "email: pradanaerlangga99@gmail.com",
+  "github: github.com/Ethern-ram",
 ];
 
 function cn(...classes: Array<string | false | undefined>) {
@@ -220,6 +260,34 @@ function TelemetryBars() {
   );
 }
 
+function ProfileImage() {
+  return (
+    <motion.div
+      whileHover={{ rotate: -2, scale: 1.03 }}
+      transition={{ type: "spring", stiffness: 200, damping: 14 }}
+      className="relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px]"
+    >
+      <div className="relative aspect-[4/5] w-full overflow-hidden border-[4px] border-black shadow-[8px_8px_0_#D4FF3F] md:shadow-[12px_12px_0_#D4FF3F]">
+        <Image
+          src="/gambarku.jpeg"
+          alt="Erlangga Pradana Kurniawan"
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 640px) 280px, (max-width: 1024px) 320px, 360px"
+          priority
+        />
+      </div>
+      <motion.div
+        className="absolute -bottom-3 -right-3 border-[3px] border-black bg-[#D4FF3F] px-3 py-2 font-mono text-[10px] font-black uppercase tracking-wider shadow-[4px_4px_0_#000]"
+        animate={{ y: [0, -4, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity }}
+      >
+        human.exe running
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function HeroStatusPanel() {
   return (
     <div className="relative grid w-full max-w-full gap-4 sm:gap-5 lg:gap-6">
@@ -318,9 +386,30 @@ function Hero() {
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 font-mono text-xs font-black uppercase">
-          <span className="h-3 w-3 animate-pulse border-2 border-black bg-[#D4FF3F]" />
-          lab status: active
+        <div className="flex items-center gap-3">
+          <motion.a
+            href="https://github.com/Ethern-ram"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ x: -3, y: -3 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 border-[3px] border-black bg-black px-3 py-2 font-mono text-xs font-black uppercase text-[#F5F3EA] shadow-[4px_4px_0_#D4FF3F] transition-shadow hover:shadow-[6px_6px_0_#D4FF3F]"
+          >
+            <GitFork size={16} strokeWidth={3} />
+            GitHub
+            <ExternalLink size={12} strokeWidth={3} />
+          </motion.a>
+          <a
+            href="mailto:pradanaerlangga99@gmail.com"
+            className="flex items-center gap-2 border-[3px] border-black bg-[#D4FF3F] px-3 py-2 font-mono text-xs font-black uppercase shadow-[4px_4px_0_#000] transition-shadow hover:shadow-[6px_6px_0_#000]"
+          >
+            <Mail size={16} strokeWidth={3} />
+            Email
+          </a>
+          <span className="hidden items-center gap-2 font-mono text-xs font-black uppercase sm:flex">
+            <span className="h-3 w-3 animate-pulse border-2 border-black bg-[#D4FF3F]" />
+            active
+          </span>
         </div>
       </motion.nav>
 
@@ -409,22 +498,23 @@ function About() {
         SEM 04
       </motion.div>
       <div className="mx-auto grid w-full max-w-[1500px] gap-5 lg:grid-cols-12">
-        <LabPanel className="p-6 lg:col-span-5" accent="bg-[#F5F3EA]">
+        <LabPanel className="p-6 lg:col-span-4" accent="bg-[#F5F3EA]">
           <p className="font-mono text-xs font-black uppercase tracking-[0.2em]">personal log / not an agency</p>
           <h2 className="mt-4 text-[clamp(2.45rem,10vw,4.5rem)] font-black uppercase leading-[0.9]">
             I study circuits, then make interfaces feel electric.
           </h2>
         </LabPanel>
-        <LabPanel className="p-6 lg:col-span-4 lg:translate-y-16" accent="bg-[#F5F3EA]">
-          <p className="text-[clamp(1.25rem,4.5vw,1.5rem)] font-bold leading-tight">
-            Erlangga is a 19-year-old Electrical Engineering student who treats
-            code like a lab bench: test, break, measure, rebuild, repeat.
-          </p>
-        </LabPanel>
-        <LabPanel className="p-5 lg:col-span-3" accent="bg-[#F5F3EA]">
+        <div className="lg:col-span-4 lg:translate-y-16">
+          <ProfileImage />
+        </div>
+        <LabPanel className="p-5 lg:col-span-4" accent="bg-[#F5F3EA]">
           <BatteryCharging size={36} strokeWidth={3} />
           <p className="mt-5 font-mono text-xs font-black uppercase">current focus</p>
           <p className="mt-2 text-[clamp(1.6rem,6vw,1.9rem)] font-black leading-none">frontend systems for real-world hardware ideas.</p>
+          <p className="mt-4 text-[clamp(1.1rem,4vw,1.25rem)] font-bold leading-tight">
+            Erlangga is a 19-year-old Electrical Engineering student who treats
+            code like a lab bench: test, break, measure, rebuild, repeat.
+          </p>
         </LabPanel>
         {[
           ["Engineering instinct", "Thinking in signals, constraints, power, failure modes, and real-world behavior."],
@@ -541,19 +631,22 @@ function Skills() {
       <div className="mx-auto grid w-full max-w-[1500px] gap-8 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-12">
         <div>
           <h2 className="text-[clamp(2.7rem,11vw,6rem)] font-black uppercase leading-[0.86]">
-            Skill telemetry.
+            Learning dashboard.
           </h2>
           <LabPanel className="mt-6 p-5 md:mt-8 md:p-6" accent="bg-[#F5F3EA]">
             <p className="text-[clamp(1.3rem,5vw,1.5rem)] font-black leading-tight">
-              Not expert in everything. Curious, dangerous enough, and always
-              calibrating.
+              Not an expert. Not pretending to be. Just a student improving daily
+              and documenting the process.
+            </p>
+            <p className="mt-4 font-mono text-xs font-bold uppercase leading-relaxed">
+              These progress bars reflect honest learning stages, not mastery claims.
             </p>
           </LabPanel>
         </div>
         <div className="space-y-5">
-          {skills.map(([label, value, color], index) => (
+          {learningSkills.map((skill, index) => (
             <motion.div
-              key={label}
+              key={skill.label}
               initial={{ opacity: 0, x: 28 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -561,16 +654,27 @@ function Skills() {
               whileHover={{ x: -3, y: -3 }}
               className="w-full max-w-full border-[3px] border-black bg-[#F5F3EA] p-4 shadow-[5px_5px_0_#000] transition-shadow hover:shadow-[7px_7px_0_#000] md:shadow-[7px_7px_0_#000] md:hover:shadow-[10px_10px_0_#000]"
             >
-              <div className="flex justify-between gap-4 font-mono text-xs font-black uppercase">
-                <span className="safe-text">{label}</span>
-                <span className="shrink-0">{value}%</span>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-xl">{skill.icon}</span>
+                  <div>
+                    <span className="font-mono text-sm font-black uppercase">{skill.label}</span>
+                    <span className="ml-3 inline-flex border-[2px] border-black bg-[#D4FF3F] px-2 py-0.5 font-mono text-[10px] font-black uppercase">
+                      {skill.status}
+                    </span>
+                  </div>
+                </div>
+                <span className="shrink-0 font-mono text-xs font-black">{skill.progress}%</span>
               </div>
-              <div className="mt-4 h-6 border-[3px] border-black bg-white">
+              <p className="mt-2 font-mono text-xs font-bold uppercase text-gray-600">
+                {skill.description}
+              </p>
+              <div className="mt-3 h-5 border-[3px] border-black bg-white">
                 <motion.div
                   className="h-full border-r-[3px] border-black"
-                  style={{ backgroundColor: color as string }}
+                  style={{ backgroundColor: skill.color }}
                   initial={{ width: 0 }}
-                  whileInView={{ width: `${value}%` }}
+                  whileInView={{ width: `${skill.progress}%` }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: index * 0.06 }}
                 />
@@ -629,24 +733,74 @@ function TerminalContact() {
             </h2>
           </div>
           <div className="grid gap-4">
-            <a href="mailto:pradanaerlangga99@gmail.com" className="group flex max-w-full items-center justify-between gap-4 border-[3px] border-[#F5F3EA] bg-[#D4FF3F] p-4 text-black shadow-[5px_5px_0_#FF8A00] transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#FF8A00] sm:p-5 md:shadow-[8px_8px_0_#FF8A00] md:hover:shadow-[12px_12px_0_#FF8A00]">
+            <a
+              href="mailto:pradanaerlangga99@gmail.com"
+              className="group flex max-w-full items-center justify-between gap-4 border-[3px] border-[#F5F3EA] bg-[#D4FF3F] p-4 text-black shadow-[5px_5px_0_#FF8A00] transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#FF8A00] sm:p-5 md:shadow-[8px_8px_0_#FF8A00] md:hover:shadow-[12px_12px_0_#FF8A00]"
+            >
               <span className="min-w-0">
                 <span className="block text-2xl font-black uppercase">Email</span>
-                <span className="safe-text block font-mono text-xs font-black uppercase">erlangga@example.com</span>
+                <span className="safe-text block font-mono text-xs font-black uppercase">pradanaerlangga99@gmail.com</span>
               </span>
               <Mail className="shrink-0 transition group-hover:rotate-12" size={30} strokeWidth={3} />
             </a>
-            <a href="#" className="group flex max-w-full items-center justify-between gap-4 border-[3px] border-[#F5F3EA] bg-[#6EA8FE] p-4 text-black shadow-[5px_5px_0_#D4FF3F] transition hover:-translate-y-1 sm:p-5 md:shadow-[8px_8px_0_#D4FF3F]">
+            <motion.a
+              href="https://github.com/Ethern-ram"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ x: -4, y: -4 }}
+              whileTap={{ scale: 0.97 }}
+              className="group flex max-w-full items-center justify-between gap-4 border-[3px] border-[#F5F3EA] bg-[#6EA8FE] p-4 text-black shadow-[5px_5px_0_#D4FF3F] transition-shadow hover:shadow-[8px_8px_0_#D4FF3F] sm:p-5 md:shadow-[8px_8px_0_#D4FF3F] md:hover:shadow-[12px_12px_0_#D4FF3F]"
+            >
               <span className="min-w-0">
                 <span className="block text-2xl font-black uppercase">GitHub</span>
-                <span className="safe-text block font-mono text-xs font-black uppercase">source code / experiments</span>
+                <span className="safe-text block font-mono text-xs font-black uppercase">github.com/Ethern-ram</span>
               </span>
-              <GitBranch className="shrink-0 transition group-hover:rotate-12" size={30} strokeWidth={3} />
-            </a>
+              <span className="flex shrink-0 items-center gap-2">
+                <GitFork className="transition group-hover:rotate-12" size={30} strokeWidth={3} />
+                <ExternalLink className="transition group-hover:translate-x-1 group-hover:-translate-y-1" size={18} strokeWidth={3} />
+              </span>
+            </motion.a>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t-[3px] border-black bg-black px-3 py-8 text-[#F5F3EA] sm:px-4 md:px-6 lg:px-10 xl:px-12">
+      <div className="mx-auto flex w-full max-w-[1500px] flex-wrap items-center justify-between gap-6">
+        <div>
+          <p className="font-mono text-xs font-black uppercase tracking-[0.18em]">
+            Erlangga Pradana Kurniawan Â© 2025
+          </p>
+          <p className="mt-1 font-mono text-[10px] font-bold uppercase tracking-wider text-gray-400">
+            built with curiosity, caffeine, and controlled chaos
+          </p>
+        </div>
+        <div className="flex items-center gap-4">
+          <a
+            href="mailto:pradanaerlangga99@gmail.com"
+            className="flex items-center gap-2 border-[2px] border-[#F5F3EA] px-3 py-2 font-mono text-[10px] font-black uppercase transition hover:bg-[#D4FF3F] hover:text-black"
+          >
+            <Mail size={14} strokeWidth={3} />
+            Email
+          </a>
+          <motion.a
+            href="https://github.com/Ethern-ram"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ y: -2, x: -2 }}
+            className="flex items-center gap-2 border-[2px] border-[#F5F3EA] px-3 py-2 font-mono text-[10px] font-black uppercase shadow-[3px_3px_0_#D4FF3F] transition-shadow hover:shadow-[5px_5px_0_#D4FF3F]"
+          >
+            <GitFork size={14} strokeWidth={3} />
+            GitHub
+            <ExternalLink size={10} strokeWidth={3} />
+          </motion.a>
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -676,6 +830,7 @@ export default function Home() {
       <Projects />
       <Skills />
       <TerminalContact />
+      <Footer />
     </main>
   );
 }

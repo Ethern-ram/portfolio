@@ -11,7 +11,6 @@ import {
   BrainCircuit,
   ExternalLink,
   Gauge,
-  GitBranch,
   GitFork,
   Mail,
   Microchip,
@@ -56,7 +55,6 @@ const learningSkills = [
     description: "Learning AI + automation fundamentals",
     progress: 35,
     color: "#D4FF3F",
-    icon: "ðŸ",
   },
   {
     label: "C++",
@@ -64,7 +62,6 @@ const learningSkills = [
     description: "Understanding logic & systems programming",
     progress: 28,
     color: "#FF8A00",
-    icon: "âš™ï¸",
   },
   {
     label: "HTML / CSS",
@@ -72,7 +69,6 @@ const learningSkills = [
     description: "Exploring frontend structures & styling",
     progress: 45,
     color: "#6EA8FE",
-    icon: "ðŸŽ¨",
   },
   {
     label: "Frontend Engineering",
@@ -80,7 +76,6 @@ const learningSkills = [
     description: "React, Next.js, and component thinking",
     progress: 30,
     color: "#D4FF3F",
-    icon: "ðŸ§©",
   },
   {
     label: "Embedded Systems",
@@ -88,7 +83,6 @@ const learningSkills = [
     description: "Microcontrollers, sensors, and hardware interfaces",
     progress: 22,
     color: "#FF8A00",
-    icon: "ðŸ”Œ",
   },
 ];
 
@@ -544,7 +538,7 @@ function About() {
   );
 }
 
-function ProjectExperiment({ project, index }: { project: typeof projects[number]; index: number }) {
+function ProjectExperiment({ project, index }: { project: (typeof projects)[number]; index: number }) {
   const [open, setOpen] = useState(index === 0);
 
   return (
@@ -576,9 +570,7 @@ function ProjectExperiment({ project, index }: { project: typeof projects[number
       <motion.div layout className="mt-6 grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(210px,250px)]">
         <p className="text-[clamp(1.05rem,4vw,1.25rem)] font-bold leading-tight">{project.copy}</p>
         <div className="border-[3px] border-black bg-[#F5F3EA] p-4">
-          <p className="font-mono text-[10px] font-black uppercase tracking-[0.16em]">
-            lab note
-          </p>
+          <p className="font-mono text-[10px] font-black uppercase tracking-[0.16em]">lab note</p>
           <p className="mt-5 text-[clamp(1.35rem,5vw,1.5rem)] font-black uppercase leading-none">
             Prototype first. Measure later. Refine always.
           </p>
@@ -656,7 +648,9 @@ function Skills() {
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-xl">{skill.icon}</span>
+                  <span className="grid h-8 w-8 place-items-center border-[2px] border-black" style={{ backgroundColor: skill.color }}>
+                    <Microchip size={14} strokeWidth={3} />
+                  </span>
                   <div>
                     <span className="font-mono text-sm font-black uppercase">{skill.label}</span>
                     <span className="ml-3 inline-flex border-[2px] border-black bg-[#D4FF3F] px-2 py-0.5 font-mono text-[10px] font-black uppercase">
@@ -773,7 +767,7 @@ function Footer() {
       <div className="mx-auto flex w-full max-w-[1500px] flex-wrap items-center justify-between gap-6">
         <div>
           <p className="font-mono text-xs font-black uppercase tracking-[0.18em]">
-            Erlangga Pradana Kurniawan Â© 2025
+            Erlangga Pradana Kurniawan - 2025
           </p>
           <p className="mt-1 font-mono text-[10px] font-bold uppercase tracking-wider text-gray-400">
             built with curiosity, caffeine, and controlled chaos

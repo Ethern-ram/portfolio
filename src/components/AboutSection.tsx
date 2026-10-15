@@ -2,9 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
-import { GraduationCap, Wrench } from "lucide-react";
+import { GraduationCap, Wrench, ArrowUpRight } from "lucide-react";
 
 export function AboutSection() {
   const { lang } = usePortfolio();
@@ -52,10 +53,11 @@ export function AboutSection() {
                 <span>{"//"}</span>
                 <span>ACADEMIC PROFILE</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
-                {lang === "en"
-                  ? "Building at the intersection of circuits and code."
-                  : "Membangun di persimpangan sirkuit dan kode."}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1652f0]">
+                ACADEMIC{" "}
+                <span className="font-editorial-serif italic font-normal text-[var(--text-primary)]">
+                  {lang === "en" ? "profile & background" : "profil & latar belakang"}
+                </span>
               </h2>
             </div>
 
@@ -97,6 +99,17 @@ export function AboutSection() {
                   Hardware-in-the-loop, telemetry logging, real field trials
                 </p>
               </div>
+            </div>
+
+            {/* Read Full About Page CTA */}
+            <div className="pt-2">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1652f0] hover:bg-[#1240c4] text-white font-mono text-xs font-bold transition-all shadow-sm"
+              >
+                <span>{lang === "en" ? "Read Full Engineering Dossier & Coursework" : "Baca Latar Belakang Lengkap & Silabus"}</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>

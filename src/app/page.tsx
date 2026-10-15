@@ -4,8 +4,6 @@ import React from "react";
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { ElectricBlueSection } from "@/components/ElectricBlueSection";
-import { MavericksCaseStudy } from "@/components/MavericksCaseStudy";
-import { VisionInspector } from "@/components/VisionInspector";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { SkillsMatrix } from "@/components/SkillsMatrix";
 import { FieldLogs } from "@/components/FieldLogs";
@@ -18,31 +16,25 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Navigation />
       <main className="flex-1 flex flex-col">
-        {/* 1. Editorial Hero matching reference image with centered portrait & 3D Drone toggle */}
+        {/* 1. Editorial Hero presenting broad Electrical Engineering identity */}
         <HeroSection />
 
-        {/* 2. Vibrant Electric Blue Section with 3D floating pill cluster */}
+        {/* 2. Vibrant Electric Blue Section with 3D multi-disciplinary floating pill cluster */}
         <ElectricBlueSection />
 
-        {/* 3. Deep-dive KRTI 2026 VTOL QuadPlane Case Study */}
-        <MavericksCaseStudy />
-
-        {/* 4. Real-time ArUco Computer Vision Lab */}
-        <VisionInspector />
-
-        {/* 5. Comprehensive Engineering Projects Catalog */}
+        {/* 3. Selected Projects Catalog (KRTI featured as one of several with dedicated case study link) */}
         <ProjectShowcase />
 
-        {/* 6. Hardware & Avionics Skills Matrix */}
+        {/* 4. Hardware, Avionics & Embedded Skills Matrix */}
         <SkillsMatrix />
 
-        {/* 7. Field Test & Flight Logs Archive */}
+        {/* 5. Field Test & Laboratory Logs Archive */}
         <FieldLogs />
 
-        {/* 8. Engineering Background & Education at ITNY */}
+        {/* 6. Concise Engineering Background & ITNY Affiliation */}
         <AboutSection />
 
-        {/* 9. Direct Engineering Contact & Dispatch */}
+        {/* 7. Direct Contact Channel & Interactive Engineering Terminal */}
         <ContactSection />
       </main>
       <ResumeModal />

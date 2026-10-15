@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 import {
@@ -159,13 +160,41 @@ export function ProjectShowcase() {
                   )}
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-precision text-xs font-mono font-medium text-[var(--text-accent)]">
-                  <span>{lang === "en" ? "Inspect Full Case Study" : "Buka Studi Kasus Lengkap"}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <div className="flex items-center justify-between pt-2 border-t border-precision text-xs font-mono font-medium">
+                  {project.id === "mavericks-guardian" ? (
+                    <Link
+                      href="/projects/mavericks-guardian"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[#1652f0] font-bold flex items-center gap-1.5 hover:underline"
+                    >
+                      <span>{lang === "en" ? "Dedicated KRTI Case Study" : "Studi Kasus Lengkap KRTI"}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </Link>
+                  ) : (
+                    <span className="text-[var(--text-accent)]">
+                      {lang === "en" ? "Inspect Technical Breakdown" : "Buka Rincian Teknis"}
+                    </span>
+                  )}
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
             </article>
           ))}
+        </div>
+
+        {/* Archive Link to /projects */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-precision bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface)] hover:border-[#1652f0] text-[var(--text-primary)] font-mono text-xs font-semibold transition-all shadow-xs"
+          >
+            <span>
+              {lang === "en"
+                ? "Browse Complete Projects Archive (5 Engineering Projects)"
+                : "Lihat Semua Arsip Proyek (5 Proyek Rekayasa)"}
+            </span>
+            <ArrowUpRight className="w-4 h-4 text-[#1652f0]" />
+          </Link>
         </div>
       </div>
 

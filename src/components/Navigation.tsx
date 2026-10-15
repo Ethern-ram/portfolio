@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { usePortfolio } from "@/context/PortfolioContext";
 import {
   Moon,
@@ -17,17 +19,13 @@ import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 export function Navigation() {
   const { lang, toggleLang, theme, toggleTheme, setIsResumeOpen } = usePortfolio();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
-    { href: "#hero", label: { en: "Home / Overview", id: "Beranda / Ringkasan" } },
-    { href: "#systems-cluster", label: { en: "Engineering Stack", id: "Spesifikasi Sistem" } },
-    { href: "#featured-case-study", label: { en: "KRTI 2026 VTOL Case Study", id: "Studi Kasus VTOL KRTI" } },
-    { href: "#vision-lab", label: { en: "ArUco Vision Lab", id: "Laboratorium Visi ArUco" } },
-    { href: "#projects", label: { en: "Selected Projects", id: "Proyek Terpilih" } },
-    { href: "#skills", label: { en: "Hardware & Avionics", id: "Perangkat Keras & Avionik" } },
-    { href: "#field-logs", label: { en: "Field & Flight Logs", id: "Catatan Terbang" } },
-    { href: "#about", label: { en: "Engineering Background", id: "Latar Belakang Rekayasa" } },
-    { href: "#contact", label: { en: "Contact / Dispatch", id: "Kontak & Diskusi" } },
+    { href: "/", label: { en: "Home", id: "Beranda" } },
+    { href: "/projects", label: { en: "All Projects", id: "Semua Proyek" } },
+    { href: "/projects/mavericks-guardian", label: { en: "KRTI UAV Case Study", id: "Studi Kasus VTOL KRTI" } },
+    { href: "/about", label: { en: "About & Background", id: "Tentang & Latar Belakang" } },
   ];
 
   return (
@@ -35,8 +33,8 @@ export function Navigation() {
       <header className="sticky top-0 z-40 w-full bg-[var(--bg-page)]/90 backdrop-blur-md transition-colors border-b border-precision">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
           {/* Brand Wordmark matching reference MILAR. -> ERLANGGA. */}
-          <a
-            href="#hero"
+          <Link
+            href="/"
             className="flex items-baseline gap-1 group focus:outline-none"
             aria-label="Erlangga Lab Home"
           >
@@ -44,9 +42,9 @@ export function Navigation() {
               ERLANGGA.
             </span>
             <span className="hidden sm:inline-block text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-muted)] group-hover:text-[var(--text-secondary)]">
-              ITNY / 2026
+              ITNY / EE
             </span>
-          </a>
+          </Link>
 
           {/* Center: / CHANGE THE MODE Pill Button (from reference image) */}
           <div className="flex items-center gap-3">
@@ -80,8 +78,30 @@ export function Navigation() {
             </button>
           </div>
 
-          {/* Right: Minimalist Hamburger Menu (=) from reference */}
+          {/* Right: Quick Links + Minimalist Hamburger Menu (=) */}
           <div className="flex items-center gap-2 sm:gap-3">
+            <Link
+              href="/projects"
+              className={`hidden md:inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-mono transition-colors ${
+                pathname === "/projects"
+                  ? "bg-[var(--text-primary)] text-[var(--bg-page)] font-bold"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+              }`}
+            >
+              {lang === "en" ? "Projects" : "Proyek"}
+            </Link>
+
+            <Link
+              href="/about"
+              className={`hidden md:inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-mono transition-colors ${
+                pathname === "/about"
+                  ? "bg-[var(--text-primary)] text-[var(--bg-page)] font-bold"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+              }`}
+            >
+              {lang === "en" ? "About" : "Tentang"}
+            </Link>
+
             <button
               onClick={() => setIsResumeOpen(true)}
               className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-semibold bg-[var(--bg-surface)] border border-precision hover:border-[var(--accent-electric)] text-[var(--text-primary)] transition-all"
@@ -90,6 +110,7 @@ export function Navigation() {
               <span>{lang === "en" ? "CV" : "Resume"}</span>
             </button>
 
+            {/* Minimalist Hamburger Button (=) */}
             <button
               onClick={() => setDrawerOpen(true)}
               className="w-11 h-11 rounded-full border border-black/15 dark:border-white/20 hover:border-[var(--accent-electric)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] flex flex-col items-center justify-center gap-1.5 group transition-all cursor-pointer"
@@ -121,12 +142,12 @@ export function Navigation() {
                     ERLANGGA.
                   </span>
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--accent-electric)]/10 text-[var(--accent-electric)] font-bold">
-                    NAVIGATION
+                    PAGES &amp; SECTIONS
                   </span>
                 </div>
                 <button
                   onClick={() => setDrawerOpen(false)}
-                  className="w-9 h-9 rounded-full border border-precision flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent-electric)] transition-colors"
+                  className="w-9 h-9 rounded-full border border-precision flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent-electric)] transition-colors cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X className="w-4 h-4" />
@@ -135,26 +156,61 @@ export function Navigation() {
 
               {/* Navigation Links */}
               <nav className="py-6 space-y-1">
-                {navLinks.map((link, idx) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setDrawerOpen(false)}
-                    className="group flex items-center justify-between py-3 px-3 rounded-lg hover:bg-[var(--bg-surface-elevated)] transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono text-[var(--text-muted)] group-hover:text-[var(--accent-electric)]">
-                        {String(idx + 1).padStart(2, "0")}
+                {navLinks.map((link, idx) => {
+                  const isActive = pathname === link.href;
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setDrawerOpen(false)}
+                      className={`group flex items-center justify-between py-3.5 px-3.5 rounded-xl transition-all ${
+                        isActive
+                          ? "bg-[var(--accent-electric)] text-white shadow-sm font-semibold"
+                          : "hover:bg-[var(--bg-surface-elevated)] text-[var(--text-primary)]"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`text-xs font-mono ${
+                            isActive ? "text-blue-100" : "text-[var(--text-muted)] group-hover:text-[var(--accent-electric)]"
+                          }`}
+                        >
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-base font-semibold">
+                          {link.label[lang]}
+                        </span>
+                      </div>
+                      <span
+                        className={`text-xs ${
+                          isActive ? "text-white" : "text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity"
+                        }`}
+                      >
+                        →
                       </span>
-                      <span className="text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-electric)] transition-colors">
-                        {link.label[lang]}
-                      </span>
-                    </div>
-                    <span className="text-xs text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity">
-                      →
+                    </Link>
+                  );
+                })}
+
+                {/* Direct link to contact section */}
+                <Link
+                  href="/#contact"
+                  onClick={() => setDrawerOpen(false)}
+                  className="group flex items-center justify-between py-3.5 px-3.5 rounded-xl hover:bg-[var(--bg-surface-elevated)] text-[var(--text-primary)] transition-all"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-mono text-[var(--text-muted)] group-hover:text-[var(--accent-electric)]">
+                      05
                     </span>
-                  </a>
-                ))}
+                    <span className="text-base font-semibold">
+                      {lang === "en" ? "Contact & Dispatch" : "Kontak & Diskusi"}
+                    </span>
+                  </div>
+                  <span className="text-xs text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity">
+                    →
+                  </span>
+                </Link>
               </nav>
             </div>
 
@@ -166,13 +222,13 @@ export function Navigation() {
                     setDrawerOpen(false);
                     setIsResumeOpen(true);
                   }}
-                  className="flex-1 py-3 px-4 rounded-full bg-[var(--accent-electric)] text-white font-mono text-xs font-bold hover:bg-[var(--accent-electric-hover)] transition-colors text-center"
+                  className="flex-1 py-3 px-4 rounded-full bg-[var(--accent-electric)] text-white font-mono text-xs font-bold hover:bg-[var(--accent-electric-hover)] transition-colors text-center cursor-pointer"
                 >
                   {lang === "en" ? "Technical CV / Resume" : "Lihat CV / Portofolio Teknis"}
                 </button>
                 <button
                   onClick={toggleLang}
-                  className="px-4 py-3 rounded-full border border-precision text-xs font-mono font-bold text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] transition-colors"
+                  className="px-4 py-3 rounded-full border border-precision text-xs font-mono font-bold text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] transition-colors cursor-pointer"
                 >
                   {lang === "en" ? "ID" : "EN"}
                 </button>
@@ -195,7 +251,7 @@ export function Navigation() {
                   className="flex items-center gap-1.5 hover:text-[var(--text-primary)] transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>{PORTFOLIO_DATA.profile.email}</span>
+                  <span>Email</span>
                 </a>
               </div>
             </div>

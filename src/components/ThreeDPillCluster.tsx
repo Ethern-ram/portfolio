@@ -13,18 +13,18 @@ interface PillItem {
 }
 
 const PILL_BADGES: PillItem[] = [
-  { id: "uav", label: "Autonomous UAV", tag: "AEROSPACE", metric: "KRTI 2026 VTOL", initialRotate: -7, zDepth: 35, highlight: true },
-  { id: "fc", label: "Cube Orange+ FC", tag: "AVIONICS", metric: "STM32H753 @ 480MHz", initialRotate: 6, zDepth: 55 },
-  { id: "jetson", label: "NVIDIA Jetson Nano", tag: "COMPANION", metric: "128-core Maxwell GPU", initialRotate: -4, zDepth: 25 },
-  { id: "aruco", label: "ArUco Precision Guidance", tag: "COMPUTER VISION", metric: "DICT_4X4_50 @ 30 FPS", initialRotate: 5, zDepth: 60, highlight: true },
-  { id: "mavlink", label: "MAVLink 921.6k", tag: "TELEMETRY", metric: "921600 baud serial", initialRotate: -8, zDepth: 20 },
-  { id: "rtk", label: "RTK GNSS Navigation", tag: "POSITIONING", metric: "Centimeter accuracy", initialRotate: 4, zDepth: 45 },
-  { id: "vtol", label: "VTOL QuadPlane", tag: "DYNAMICS", metric: "Dual-mode transition", initialRotate: -5, zDepth: 50 },
-  { id: "pid", label: "PID Flight Dynamics", tag: "CONTROL", metric: "Rate & Att loop tuning", initialRotate: 7, zDepth: 30 },
-  { id: "opencv", label: "OpenCV Edge Pipeline", tag: "VISION", metric: "Sub-pixel corner detector", initialRotate: -6, zDepth: 40 },
-  { id: "ardupilot", label: "ArduPilot Firmware", tag: "STACK", metric: "Custom AP_Landing", initialRotate: 3, zDepth: 65, highlight: true },
-  { id: "cpp", label: "Embedded C / C++", tag: "LOW-LEVEL", metric: "Zero-copy buffers", initialRotate: -3, zDepth: 20 },
-  { id: "esp32", label: "ESP32 Custom Telemetry", tag: "HARDWARE", metric: "2.4GHz backup link", initialRotate: 8, zDepth: 35 },
+  { id: "embedded", label: "Embedded Systems", tag: "FIRMWARE", metric: "C/C++, Register & HAL Level", initialRotate: -7, zDepth: 35, highlight: true },
+  { id: "cv", label: "Computer Vision", tag: "PERCEPTION", metric: "OpenCV, Pose Estimation, Filters", initialRotate: 6, zDepth: 55, highlight: true },
+  { id: "hwsw", label: "Hardware-Software Integration", tag: "SYSTEMS", metric: "UART, I2C, SPI & Bus Architecture", initialRotate: -4, zDepth: 25 },
+  { id: "mcu", label: "Microcontroller Firmware", tag: "LOW-LEVEL", metric: "STM32, ESP32, AVR", initialRotate: 5, zDepth: 60 },
+  { id: "iot", label: "IoT & Telemetry", tag: "CONNECTIVITY", metric: "MQTT, WebSockets, Wi-Fi", initialRotate: -8, zDepth: 20 },
+  { id: "robotics", label: "Robotics & Control", tag: "AUTOMATION", metric: "PID Control & Sensor Fusion", initialRotate: 4, zDepth: 45, highlight: true },
+  { id: "edgeai", label: "Edge AI Computing", tag: "COMPUTING", metric: "NVIDIA Jetson, Linux CLI", initialRotate: -5, zDepth: 50 },
+  { id: "pcb", label: "Circuit & PCB Prototyping", tag: "HARDWARE", metric: "Schematic capture & breadboarding", initialRotate: 7, zDepth: 30 },
+  { id: "rtos", label: "FreeRTOS Multitasking", tag: "OS", metric: "Queue primitives & task scheduling", initialRotate: -6, zDepth: 40 },
+  { id: "sensors", label: "Sensor Interfacing", tag: "INSTRUMENTATION", metric: "IMU, ADC, Optic, Encoders", initialRotate: 3, zDepth: 65 },
+  { id: "linux", label: "Linux & ROS2 Foundations", tag: "SOFTWARE", metric: "POSIX, Bash scripting, Nodes", initialRotate: -3, zDepth: 20 },
+  { id: "uav", label: "Avionics Systems Integration", tag: "APPLICATION", metric: "ArduPilot & MAVLink Protocols", initialRotate: 8, zDepth: 35 },
 ];
 
 export function ThreeDPillCluster() {
@@ -81,7 +81,7 @@ export function ThreeDPillCluster() {
           </div>
         ) : (
           <p className="text-xs font-mono text-white/60 tracking-wider uppercase text-center">
-            [ HOVER OR TOUCH BADGES FOR 3D INSPECTION ]
+            [ HOVER OR TOUCH BADGES FOR 3D HARDWARE &amp; SOFTWARE STACK ]
           </p>
         )}
       </div>

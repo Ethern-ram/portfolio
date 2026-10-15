@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { ThreeDPillCluster } from "./ThreeDPillCluster";
 import { ArrowUpRight } from "lucide-react";
@@ -21,7 +22,7 @@ export function ElectricBlueSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
         {/* Top Header Row matching reference image */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8 sm:mb-14">
-          {/* Left Title: ALL YOUR / engineering systems */}
+          {/* Left Title: ALL YOUR / engineering needs */}
           <div className="lg:col-span-7">
             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white leading-[0.95]">
               ALL YOUR
@@ -35,24 +36,24 @@ export function ElectricBlueSection() {
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end justify-between space-y-5 lg:text-right pt-2">
             <p className="text-sm sm:text-base text-blue-100 max-w-sm font-normal leading-relaxed">
               {lang === "en"
-                ? "Full-stack avionics, computer vision, and autonomous flight architectures built for mission-grade reliability and physical deployment."
-                : "Arsitektur avionik full-stack, visi komputer, dan sistem penerbangan otonom yang dirancang untuk keandalan misi dan implementasi fisik."}
+                ? "Full-stack embedded firmware, computer vision pipelines, IoT telemetry, and hardware-software systems engineered with real laboratory discipline."
+                : "Firmware tertanam full-stack, pipeline computer vision, telemetri IoT, dan sistem perangkat keras-lunak yang direkayasa dengan disiplin laboratorium nyata."}
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="#contact"
+              <Link
+                href="/projects"
                 className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white text-[#1652f0] hover:bg-slate-100 font-mono text-xs sm:text-sm font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
               >
-                <span>{lang === "en" ? "BOOK A CALL" : "HUBUNGI SAYA"}</span>
+                <span>{lang === "en" ? "EXPLORE PROJECTS" : "LIHAT PROYEK"}</span>
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </Link>
 
               <button
                 onClick={() => setIsResumeOpen(true)}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 font-mono text-xs font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 font-mono text-xs font-semibold transition-colors cursor-pointer"
               >
-                <span>{lang === "en" ? "SPECS & CV" : "RINGKASAN CV"}</span>
+                <span>{lang === "en" ? "TECHNICAL CV" : "RINGKASAN CV"}</span>
               </button>
             </div>
           </div>
@@ -67,49 +68,49 @@ export function ElectricBlueSection() {
         <div className="pt-10 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-white/90">
           <div className="flex flex-col space-y-1">
             <span className="text-[10px] font-mono text-blue-200 uppercase tracking-widest">
-              PRIMARY AIRFRAME
+              PRIMARY DISCIPLINE
             </span>
             <span className="text-base sm:text-lg font-bold font-mono">
-              VTOL QuadPlane
+              Electrical Engineering
             </span>
             <span className="text-[11px] text-blue-200">
-              KRTI 2026 Ready
+              ITNY Undergraduate
             </span>
           </div>
 
           <div className="flex flex-col space-y-1">
             <span className="text-[10px] font-mono text-blue-200 uppercase tracking-widest">
-              VISION LATENCY
+              CORE TOOLCHAIN
             </span>
             <span className="text-base sm:text-lg font-bold font-mono">
-              &lt; 33ms @ 30 FPS
+              C/C++, Python &amp; Linux
             </span>
             <span className="text-[11px] text-blue-200">
-              Jetson Nano OpenCV
+              POSIX &amp; FreeRTOS
             </span>
           </div>
 
           <div className="flex flex-col space-y-1">
             <span className="text-[10px] font-mono text-blue-200 uppercase tracking-widest">
-              TELEMETRY BAUD
+              SYSTEMS ARCHITECTURE
             </span>
             <span className="text-base sm:text-lg font-bold font-mono">
-              921,600 bps
+              HW / SW Integration
             </span>
             <span className="text-[11px] text-blue-200">
-              MAVLink 2.0 Serial
+              UART, I2C, SPI &amp; Telemetry
             </span>
           </div>
 
           <div className="flex flex-col space-y-1">
             <span className="text-[10px] font-mono text-blue-200 uppercase tracking-widest">
-              FLIGHT STACK
+              APPLICATION DOMAINS
             </span>
             <span className="text-base sm:text-lg font-bold font-mono">
-              Cube Orange+
+              Vision, IoT &amp; Robotics
             </span>
             <span className="text-[11px] text-blue-200">
-              ArduPilot Custom Subsystems
+              Physical Deployment
             </span>
           </div>
         </div>

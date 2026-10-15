@@ -49,53 +49,49 @@ export function HeroSection() {
         </div>
 
         {/* Central Editorial Hero Stage matching reference image */}
-        <div className="relative flex flex-col items-center justify-center min-h-[480px] sm:min-h-[580px] md:min-h-[640px] pt-4 select-none">
+        <div className="relative flex flex-col items-center justify-center min-h-[440px] sm:min-h-[520px] md:min-h-[580px] pt-2 sm:pt-4 select-none">
           {/* Top Line: Serif Italic Text */}
-          <div className="w-full flex justify-between items-baseline px-2 sm:px-8 z-0">
-            <span className="font-editorial-serif italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-[var(--text-primary)] leading-none tracking-tight">
+          <div className="w-full flex justify-between items-baseline px-4 sm:px-12 md:px-16 z-0">
+            <span className="font-editorial-serif italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--text-primary)] leading-none tracking-tight">
               I&apos;m
             </span>
-            <span className="font-editorial-serif italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--text-primary)] leading-none tracking-tight">
+            <span className="font-editorial-serif italic text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[var(--text-primary)] leading-none tracking-tight">
               {lang === "en" ? "systems &" : "rekayasa &"}
             </span>
           </div>
 
           {/* Big Bold Electric Blue Sans-Serif Typography Layer (DESI GNER -> ENGI NEER) */}
-          <div className="w-full flex justify-between items-center px-1 sm:px-4 -mt-2 sm:-mt-6 md:-mt-8 z-0">
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10.5rem] font-black uppercase tracking-tighter text-[#1652f0] leading-none">
+          <div className="w-full flex justify-between items-center px-2 sm:px-6 md:px-8 -mt-2 sm:-mt-4 md:-mt-6 z-0">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black uppercase tracking-tighter text-[#1652f0] leading-none">
               ENGI
             </h1>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10.5rem] font-black uppercase tracking-tighter text-[#1652f0] leading-none">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black uppercase tracking-tighter text-[#1652f0] leading-none">
               NEER
             </h1>
           </div>
 
-          {/* Centered Overlapping Portrait of Erlangga */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-            <div className="relative w-64 sm:w-80 md:w-96 h-[340px] sm:h-[440px] md:h-[500px] pointer-events-auto flex items-end justify-center group">
-              {/* Silhouette / Portrait Photo with smooth rounded framing */}
+          {/* Centered Overlapping Cutout Portrait of Erlangga */}
+          <div className="absolute inset-0 flex items-end justify-center pointer-events-none z-10 pb-0">
+            <div className="relative w-52 sm:w-64 md:w-72 lg:w-80 h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] pointer-events-auto flex items-end justify-center group">
               <div className="relative w-full h-full flex items-end justify-center">
-                <div className="relative w-60 sm:w-72 md:w-84 h-[330px] sm:h-[420px] md:h-[480px] rounded-t-[100px] sm:rounded-t-[140px] overflow-hidden border-2 border-white/60 dark:border-black/40 shadow-2xl bg-gradient-to-t from-slate-900 via-slate-800 to-slate-700">
-                  <Image
-                    src="/gambarku.jpeg"
-                    alt="Erlangga Pradana Kurniawan — Electrical Engineering Student"
-                    fill
-                    priority
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-700 filter brightness-95 contrast-105"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                </div>
+                <Image
+                  src="/erlangga_hero.png"
+                  alt="Erlangga Pradana Kurniawan — Electrical Engineering Student"
+                  fill
+                  priority
+                  className="object-contain object-bottom filter drop-shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+                  sizes="(max-width: 768px) 260px, 340px"
+                />
               </div>
 
               {/* Floating "LET'S CHAT" Pill Button on chest matching reference */}
-              <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap">
+              <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap">
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#1652f0] hover:bg-[#1240c4] text-white font-mono text-xs sm:text-sm font-bold tracking-wider shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full bg-[#1652f0] hover:bg-[#1240c4] text-white font-mono text-xs sm:text-sm font-bold tracking-wider shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <span>{lang === "en" ? "LET'S CHAT" : "HUBUNGI SAYA"}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </a>
               </div>
             </div>

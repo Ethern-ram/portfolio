@@ -17,7 +17,7 @@ import { GithubIcon } from "./Icons";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 
 export function Navigation() {
-  const { lang, toggleLang, theme, toggleTheme, setIsResumeOpen } = usePortfolio();
+  const { lang, toggleLang, toggleTheme, setIsResumeOpen } = usePortfolio();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
 
@@ -47,6 +47,7 @@ export function Navigation() {
           </Link>
 
           {/* Center: / CHANGE THE MODE Pill Button (from reference image) */}
+          {/* Center: / CHANGE THE MODE Pill Button (from reference image) */}
           <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
@@ -58,13 +59,10 @@ export function Navigation() {
                 /
               </span>
               <span className="text-[11px] sm:text-xs font-mono font-semibold tracking-wide uppercase">
-                {theme === "dark" ? "LIGHT MODE" : "CHANGE THE MODE"}
+                CHANGE THE MODE
               </span>
-              {theme === "dark" ? (
-                <Sun className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-45 transition-transform" />
-              ) : (
-                <Moon className="w-3.5 h-3.5 text-slate-700 group-hover:-rotate-12 transition-transform" />
-              )}
+              <Sun className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-45 transition-transform hidden dark:block" />
+              <Moon className="w-3.5 h-3.5 text-slate-700 group-hover:-rotate-12 transition-transform block dark:hidden" />
             </button>
 
             {/* Quick Lang Switcher */}

@@ -3,179 +3,205 @@
 import React, { useState } from "react";
 import { usePortfolio } from "@/context/PortfolioContext";
 import {
-  Compass,
   Moon,
   Sun,
   Globe,
   FileText,
-  Menu,
   X,
   Mail,
+  ExternalLink,
 } from "lucide-react";
 import { GithubIcon } from "./Icons";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 
 export function Navigation() {
   const { lang, toggleLang, theme, toggleTheme, setIsResumeOpen } = usePortfolio();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const navLinks = [
-    { href: "#projects", label: { en: "Selected Work", id: "Karya Terpilih" } },
-    { href: "#featured-case-study", label: { en: "VTOL Case Study", id: "Studi Kasus VTOL" } },
-    { href: "#skills", label: { en: "Capabilities", id: "Keahlian" } },
-    { href: "#field-logs", label: { en: "Field Logs", id: "Catatan Lapangan" } },
-    { href: "#about", label: { en: "About", id: "Tentang" } },
-    { href: "#contact", label: { en: "Contact", id: "Kontak" } },
+    { href: "#hero", label: { en: "Home / Overview", id: "Beranda / Ringkasan" } },
+    { href: "#systems-cluster", label: { en: "Engineering Stack", id: "Spesifikasi Sistem" } },
+    { href: "#featured-case-study", label: { en: "KRTI 2026 VTOL Case Study", id: "Studi Kasus VTOL KRTI" } },
+    { href: "#vision-lab", label: { en: "ArUco Vision Lab", id: "Laboratorium Visi ArUco" } },
+    { href: "#projects", label: { en: "Selected Projects", id: "Proyek Terpilih" } },
+    { href: "#skills", label: { en: "Hardware & Avionics", id: "Perangkat Keras & Avionik" } },
+    { href: "#field-logs", label: { en: "Field & Flight Logs", id: "Catatan Terbang" } },
+    { href: "#about", label: { en: "Engineering Background", id: "Latar Belakang Rekayasa" } },
+    { href: "#contact", label: { en: "Contact / Dispatch", id: "Kontak & Diskusi" } },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-precision bg-[var(--bg-page)]/85 backdrop-blur-md transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand / Wordmark */}
-        <a href="#hero" className="flex items-center gap-3 group focus:outline-none">
-          <div className="w-8 h-8 rounded border border-precision bg-[var(--bg-surface-elevated)] flex items-center justify-center text-[var(--accent-primary)] group-hover:border-[var(--accent-primary)] transition-colors">
-            <Compass className="w-4 h-4 transition-transform group-hover:rotate-45" />
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="font-mono font-bold tracking-tight text-sm text-[var(--text-primary)]">
-                ERLANGGA LAB
-              </span>
-              <span className="hidden sm:inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-mono uppercase bg-[var(--accent-glow)] text-[var(--text-accent)] border border-precision">
-                2.0 // ITNY
-              </span>
-            </div>
-            <span className="text-[10px] font-mono text-[var(--text-muted)] tracking-wider">
-              ENGINEERING ARCHIVE
+    <>
+      <header className="sticky top-0 z-40 w-full bg-[var(--bg-page)]/90 backdrop-blur-md transition-colors border-b border-precision">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+          {/* Brand Wordmark matching reference MILAR. -> ERLANGGA. */}
+          <a
+            href="#hero"
+            className="flex items-baseline gap-1 group focus:outline-none"
+            aria-label="Erlangga Lab Home"
+          >
+            <span className="text-xl sm:text-2xl font-black tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-electric)] transition-colors">
+              ERLANGGA.
             </span>
-          </div>
-        </a>
+            <span className="hidden sm:inline-block text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--text-muted)] group-hover:text-[var(--text-secondary)]">
+              ITNY / 2026
+            </span>
+          </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="px-3 py-1.5 rounded text-xs font-mono font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] transition-all"
-            >
-              {link.label[lang]}
-            </a>
-          ))}
-        </nav>
-
-        {/* Desktop Action Controls */}
-        <div className="hidden sm:flex items-center gap-2">
-          {/* Language Switcher */}
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-mono border border-precision bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
-            title="Toggle Language (EN / ID)"
-            aria-label="Toggle language"
-          >
-            <Globe className="w-3.5 h-3.5 text-[var(--text-accent)]" />
-            <span className="font-semibold">{lang.toUpperCase()}</span>
-          </button>
-
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="p-1.5 rounded border border-precision bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
-            title="Toggle Dark / Light Theme"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? (
-              <Sun className="w-4 h-4 text-amber-400" />
-            ) : (
-              <Moon className="w-4 h-4 text-slate-700" />
-            )}
-          </button>
-
-          {/* CV / Resume Modal Button */}
-          <button
-            onClick={() => setIsResumeOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-medium border border-precision bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface)] text-[var(--text-primary)] transition-all"
-          >
-            <FileText className="w-3.5 h-3.5 text-[var(--text-accent)]" />
-            <span>{lang === "en" ? "Technical CV" : "CV Teknis"}</span>
-          </button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <button
-            onClick={toggleTheme}
-            className="p-1.5 rounded border border-precision bg-[var(--bg-surface)] text-[var(--text-secondary)]"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
-          </button>
-          <button
-            onClick={toggleLang}
-            className="px-2 py-1.5 rounded text-xs font-mono border border-precision bg-[var(--bg-surface)] text-[var(--text-secondary)] font-semibold"
-            aria-label="Toggle language"
-          >
-            {lang.toUpperCase()}
-          </button>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded border border-precision bg-[var(--bg-surface)] text-[var(--text-primary)]"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-precision bg-[var(--bg-surface)] px-4 py-4 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="grid gap-1 pb-3 border-b border-precision">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded text-sm font-mono text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] transition-colors"
-              >
-                {link.label[lang]}
-              </a>
-            ))}
-          </div>
-
-          <div className="pt-2 flex flex-col gap-2">
+          {/* Center: / CHANGE THE MODE Pill Button (from reference image) */}
+          <div className="flex items-center gap-3">
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setIsResumeOpen(true);
-              }}
-              className="w-full flex items-center justify-center gap-2 py-2 rounded text-xs font-mono border border-precision bg-[var(--bg-surface-elevated)] text-[var(--text-primary)]"
+              onClick={toggleTheme}
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full border border-black/15 dark:border-white/20 bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] hover:border-[var(--accent-electric)] text-[var(--text-primary)] transition-all shadow-xs hover:shadow-sm group cursor-pointer"
+              title="Toggle theme (Light / Dark)"
+              aria-label="Change color mode"
             >
-              <FileText className="w-4 h-4 text-[var(--text-accent)]" />
-              <span>{lang === "en" ? "View Technical CV / Summary" : "Lihat CV / Ringkasan Teknis"}</span>
+              <span className="text-xs font-mono font-medium text-[var(--text-muted)] group-hover:text-[var(--accent-electric)] transition-colors">
+                /
+              </span>
+              <span className="text-[11px] sm:text-xs font-mono font-semibold tracking-wide uppercase">
+                {theme === "dark" ? "LIGHT MODE" : "CHANGE THE MODE"}
+              </span>
+              {theme === "dark" ? (
+                <Sun className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-45 transition-transform" />
+              ) : (
+                <Moon className="w-3.5 h-3.5 text-slate-700 group-hover:-rotate-12 transition-transform" />
+              )}
             </button>
-            <div className="flex items-center justify-center gap-4 text-xs font-mono text-[var(--text-muted)] pt-1">
-              <a
-                href={PORTFOLIO_DATA.profile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 hover:text-[var(--text-primary)]"
-              >
-                <GithubIcon className="w-3.5 h-3.5" />
-                <span>GitHub</span>
-              </a>
-              <span>{"//"}</span>
-              <a
-                href={`mailto:${PORTFOLIO_DATA.profile.email}`}
-                className="flex items-center gap-1 hover:text-[var(--text-primary)]"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email</span>
-              </a>
+
+            {/* Quick Lang Switcher */}
+            <button
+              onClick={toggleLang}
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-precision text-[11px] font-mono text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] transition-colors"
+              title="Switch language (EN / ID)"
+            >
+              <Globe className="w-3 h-3 text-[var(--accent-electric)]" />
+              <span className="font-bold">{lang.toUpperCase()}</span>
+            </button>
+          </div>
+
+          {/* Right: Minimalist Hamburger Menu (=) from reference */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              onClick={() => setIsResumeOpen(true)}
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-semibold bg-[var(--bg-surface)] border border-precision hover:border-[var(--accent-electric)] text-[var(--text-primary)] transition-all"
+            >
+              <FileText className="w-3.5 h-3.5 text-[var(--accent-electric)]" />
+              <span>{lang === "en" ? "CV" : "Resume"}</span>
+            </button>
+
+            <button
+              onClick={() => setDrawerOpen(true)}
+              className="w-11 h-11 rounded-full border border-black/15 dark:border-white/20 hover:border-[var(--accent-electric)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] flex flex-col items-center justify-center gap-1.5 group transition-all cursor-pointer"
+              aria-label="Open menu drawer"
+            >
+              <span className="w-5 h-[2px] bg-[var(--text-primary)] group-hover:bg-[var(--accent-electric)] transition-colors rounded-full" />
+              <span className="w-5 h-[2px] bg-[var(--text-primary)] group-hover:bg-[var(--accent-electric)] transition-colors rounded-full" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Slide-out Menu Overlay */}
+      {drawerOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity"
+            onClick={() => setDrawerOpen(false)}
+          />
+
+          {/* Drawer Panel */}
+          <div className="relative w-full max-w-md bg-[var(--bg-surface)] h-full shadow-2xl p-6 sm:p-8 flex flex-col justify-between overflow-y-auto z-10 border-l border-precision animate-in slide-in-from-right duration-300">
+            {/* Top Close Row */}
+            <div>
+              <div className="flex items-center justify-between pb-6 border-b border-precision">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl font-black tracking-tight text-[var(--text-primary)]">
+                    ERLANGGA.
+                  </span>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[var(--accent-electric)]/10 text-[var(--accent-electric)] font-bold">
+                    NAVIGATION
+                  </span>
+                </div>
+                <button
+                  onClick={() => setDrawerOpen(false)}
+                  className="w-9 h-9 rounded-full border border-precision flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent-electric)] transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="py-6 space-y-1">
+                {navLinks.map((link, idx) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setDrawerOpen(false)}
+                    className="group flex items-center justify-between py-3 px-3 rounded-lg hover:bg-[var(--bg-surface-elevated)] transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-mono text-[var(--text-muted)] group-hover:text-[var(--accent-electric)]">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-electric)] transition-colors">
+                        {link.label[lang]}
+                      </span>
+                    </div>
+                    <span className="text-xs text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity">
+                      →
+                    </span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* Bottom Actions & Socials */}
+            <div className="pt-6 border-t border-precision space-y-4">
+              <div className="flex items-center justify-between gap-3">
+                <button
+                  onClick={() => {
+                    setDrawerOpen(false);
+                    setIsResumeOpen(true);
+                  }}
+                  className="flex-1 py-3 px-4 rounded-full bg-[var(--accent-electric)] text-white font-mono text-xs font-bold hover:bg-[var(--accent-electric-hover)] transition-colors text-center"
+                >
+                  {lang === "en" ? "Technical CV / Resume" : "Lihat CV / Portofolio Teknis"}
+                </button>
+                <button
+                  onClick={toggleLang}
+                  className="px-4 py-3 rounded-full border border-precision text-xs font-mono font-bold text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] transition-colors"
+                >
+                  {lang === "en" ? "ID" : "EN"}
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between text-xs font-mono text-[var(--text-muted)] pt-2">
+                <a
+                  href={PORTFOLIO_DATA.profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 hover:text-[var(--text-primary)] transition-colors"
+                >
+                  <GithubIcon className="w-3.5 h-3.5" />
+                  <span>GitHub</span>
+                  <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                </a>
+                <span>•</span>
+                <a
+                  href={`mailto:${PORTFOLIO_DATA.profile.email}`}
+                  className="flex items-center gap-1.5 hover:text-[var(--text-primary)] transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>{PORTFOLIO_DATA.profile.email}</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

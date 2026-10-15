@@ -76,10 +76,11 @@ export function VisionInspector() {
               <span>{"//"}</span>
               <span>OPENCV PIPELINE</span>
             </div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[var(--text-primary)]">
-              {lang === "en"
-                ? "Interactive Perception Pipeline Inspector"
-                : "Inspektor Interaktif Pipeline Persepsi"}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1652f0]">
+              VISION{" "}
+              <span className="font-editorial-serif italic font-normal text-[var(--text-primary)]">
+                {lang === "en" ? "pipeline lab" : "laboratorium visi"}
+              </span>
             </h2>
             <p className="mt-1 text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl">
               {lang === "en"

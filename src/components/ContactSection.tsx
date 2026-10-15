@@ -102,8 +102,11 @@ export function ContactSection() {
                 <span>{"//"}</span>
                 <span>DIRECT INQUIRIES</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
-                {lang === "en" ? "Let's build something technically sound." : "Mari membangun sistem yang andal."}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1652f0]">
+                LET&apos;S{" "}
+                <span className="font-editorial-serif italic font-normal text-[var(--text-primary)]">
+                  {lang === "en" ? "connect & build" : "berdiskusi & bangun"}
+                </span>
               </h2>
               <p className="mt-2 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
                 {lang === "en"

@@ -31,8 +31,11 @@ export function MavericksCaseStudy() {
               <span>{"//"}</span>
               <span>KRTI 2026 VTOL</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
-              Mavericks Guardian — Autonomous VTOL UAV
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1652f0]">
+              MAVERICKS{" "}
+              <span className="font-editorial-serif italic font-normal text-[var(--text-primary)]">
+                {lang === "en" ? "vtol system" : "sistem vtol"}
+              </span>
             </h2>
             <p className="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-3xl">
               {lang === "en"

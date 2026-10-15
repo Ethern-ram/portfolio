@@ -49,8 +49,11 @@ export function SkillsMatrix() {
             <span>{"//"}</span>
             <span>EVIDENCE-BACKED MATRIX</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
-            {lang === "en" ? "Technical Capabilities & Skills" : "Kapasitas & Keahlian Teknis"}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1652f0]">
+            TECHNICAL{" "}
+            <span className="font-editorial-serif italic font-normal text-[var(--text-primary)]">
+              {lang === "en" ? "capabilities" : "keahlian"}
+            </span>
           </h2>
           <p className="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl">
             {lang === "en"

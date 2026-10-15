@@ -57,8 +57,11 @@ export function ProjectShowcase() {
               <span>{"//"}</span>
               <span>SELECTED WORK</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[var(--text-primary)]">
-              {lang === "en" ? "Selected Engineering Projects" : "Proyek Rekayasa Terpilih"}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1652f0]">
+              SELECTED{" "}
+              <span className="font-editorial-serif italic font-normal text-[var(--text-primary)]">
+                {lang === "en" ? "works & systems" : "karya & sistem"}
+              </span>
             </h2>
             <p className="mt-2 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl">
               {lang === "en"
